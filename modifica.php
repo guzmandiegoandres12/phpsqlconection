@@ -1,6 +1,7 @@
 <?php
-    include "conectar.php";
-    $idmmod=$_GET["iduser"];
+    include "includ.php";
+    $procte =new protectG();
+    $idmmod=$procte->sanit($_GET["iduser"]);
     if ($sentencia = $conexion->prepare("SELECT * FROM `datos_user` WHERE `id_user`=?")) {
         $sentencia->bind_param("i",$idmmod);
         $sentencia->execute();

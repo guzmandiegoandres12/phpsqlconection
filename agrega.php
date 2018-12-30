@@ -1,9 +1,11 @@
 <?php
     include "conectar.php";
-    $nombre=$_POST["nombre"];
-    $iden=$_POST['iden'];
-    $correo=$_POST["correo"];
-    $tele=$_POST['tele'];
+    include "protectclass.php";
+    $procte =new protectG();
+    $nombre=$procte->sanit($_POST["nombre"]); 
+    $iden=$procte->sanit($_POST['iden']);
+    $correo=$procte->sanit($_POST["correo"]);
+    $tele=$procte->sanit($_POST['tele']);
     #envio de informacion a BD con declaraciion preparada
     # 1-preparacion de  la sentencia prepare ("INSERT INTO `datos_user`(`nombre`, `identificacion`, `correo`, `telefono`) VALUES (?,?,?,?)")))
     # 2.1-vinculacion de la sentencia $sentencia->bind_param("ssss", $nombre,$iden,$correo,$tele)

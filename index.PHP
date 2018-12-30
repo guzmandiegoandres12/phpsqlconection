@@ -22,35 +22,37 @@
     <H3>DATOS REGISTRADOS</H3>
     <table> 
     <?php 
-    include "conectar.php";
-    $coounsult_add="SELECT * FROM `datos_user`";
-    $consult=mysqli_query($conexion,$coounsult_add);
-    while($rows=$consult->fetch_array()){ 
-        echo "<tr>";
-        echo "<td>";
-        echo $rows[0]."     "; 
-        echo "</td>";
-        echo "<td>";
-        echo $rows[1]."     ";
-        echo "</td>";
-        echo "<td>";
-        echo $rows[2]."     ";
-        echo "</td>";
-        echo "<td>";
-        echo $rows[3]."     ";
-        echo "</td>";
-        echo "<td>";
-        echo $rows[3]."     ";
-        echo "</td>";
-        echo "<td>";
-        echo "<a href='elinina.php?iduser=".$rows[0]."'>eliminar</a>";
-        echo "</td>";
-        echo "<td>";
-        echo "<a href='modifica.php?iduser=".$rows[0]."'>modificar</a>";
-        echo "</td>";
-        echo "</tr>";
+    include "includ.php";
+    $calssconexion = new classconect($sevidor, $base, $usuario, $contra);
+    $stmt = $calssconexion->getvert()->prepare('SELECT * FROM datos_user');;
+    if ($stmt->execute()) {
+        while ($rows = $stmt->fetch()) {
+            echo "<tr>";
+            echo "<td>";
+            echo $rows[0] . "     ";
+            echo "</td>";
+            echo "<td>";
+            echo $rows[1] . "     ";
+            echo "</td>";
+            echo "<td>";
+            echo $rows[2] . "     ";
+            echo "</td>";
+            echo "<td>";
+            echo $rows[3] . "     ";
+            echo "</td>";
+            echo "<td>";
+            echo $rows[4] . "     ";
+            echo "</td>";
+            echo "<td>";
+            echo "<a href='elinina.php?iduser=" . $rows[0] . "'>eliminar</a>";
+            echo "</td>";
+            echo "<td>";
+            echo "<a href='modifica.php?iduser=" . $rows[0] . "'>modificar</a>";
+            echo "</td>";
+            echo "</tr>";
+        }
     }
-    mysqli_close($conexion);
+
     ?>
     <table> 
 
