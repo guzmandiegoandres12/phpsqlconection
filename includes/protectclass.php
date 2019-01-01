@@ -1,5 +1,6 @@
 
 <?php 
+//clase para sanizacion de  datos de entrada de usuario
 class protectG
 {
     function sanit($data)

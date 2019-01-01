@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,53 +9,24 @@
     <title>Document</title>
 </head>
 
-<body>
-    <h1>MANEJO DE DATOS</h1>
-    <form action="agrega.php" method="POST">
-        <h3>REGISTRO DE DATOS</h3>
+<body><!--admin/-->
+    <h1>INGRESO ADMINISTRADOR</h1>
+    <form action="admin/ingresa.php" method="POST">
         <p>NOMBRE:<input type="text" name="nombre"></p>
-        <p>IDENFIFICACION:<input type="text" name="iden"></p> 
-        <p> CORREO:<input type="text" name="correo"></p> 
-        <p>TELEFONO: <input type="text" name="tele"></p>
-        <input type="submit" value="registar_datos">
+        <p>CONTRASEÑA:<input type="password" name="pasdwod"></p> 
+       
+        <input type="submit" value="ingresar">
+        
     </form>
+<?Php 
+define('RAIZ', $_SERVER['DOCUMENT_ROOT']);
+include(RAIZ . '/ejercicio/includes/includ.php');
+$procte = new protectG();
+if (!empty($_GET['Error'])) {
+    echo "usuario o contraseña incorrecta";
+}
 
-    <H3>DATOS REGISTRADOS</H3>
-    <table> 
-    <?php 
-    include "includ.php";
-    $calssconexion = new classconect($sevidor, $base, $usuario, $contra);
-    $stmt = $calssconexion->getvert()->prepare('SELECT * FROM datos_user');;
-    if ($stmt->execute()) {
-        while ($rows = $stmt->fetch()) {
-            echo "<tr>";
-            echo "<td>";
-            echo $rows[0] . "     ";
-            echo "</td>";
-            echo "<td>";
-            echo $rows[1] . "     ";
-            echo "</td>";
-            echo "<td>";
-            echo $rows[2] . "     ";
-            echo "</td>";
-            echo "<td>";
-            echo $rows[3] . "     ";
-            echo "</td>";
-            echo "<td>";
-            echo $rows[4] . "     ";
-            echo "</td>";
-            echo "<td>";
-            echo "<a href='elinina.php?iduser=" . $rows[0] . "'>eliminar</a>";
-            echo "</td>";
-            echo "<td>";
-            echo "<a href='modifica.php?iduser=" . $rows[0] . "'>modificar</a>";
-            echo "</td>";
-            echo "</tr>";
-        }
-    }
-
-    ?>
-    <table> 
+?>
 
 </body>
 
